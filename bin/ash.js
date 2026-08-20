@@ -3,43 +3,23 @@
 import { Command } from 'commander';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { readFileSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const pkg = await import(join(__dirname, '..', 'package.json'), { with: { type: 'json' } });
+const pkg = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8'));
 
 const program = new Command();
 
 program
   .name('ash')
   .description('ash — Self Hosting Harness')
-  .version(pkg.default.version);
+  .version(pkg.version);
 
 program
   .command('setup')
-  .description('Interactive setup wizard — creates volume, configures services')
+  .description('Interactive setup wizard')
   .action(async () => {
     await import(join(__dirname, '..', 'setup', 'index.js'));
-  });
-
-program
-  .command('status')
-  .description('Check running services')
-  .action(async () => {
-    await import(join(__dirname, '..', 'src', 'status.js'));
-  });
-
-program
-  .command('start')
-  .description('Start all services')
-  .action(async () => {
-    await import(join(__dirname, '..', 'src', 'start.js'));
-  });
-
-program
-  .command('stop')
-  .description('Stop all services')
-  .action(async () => {
-    await import(join(__dirname, '..', 'src', 'stop.js'));
   });
 
 // Default to setup if no command given
