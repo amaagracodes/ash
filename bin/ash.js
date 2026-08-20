@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-'use strict';
 
-const { execSync } = require('child_process');
-const path = require('path');
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-const command = process.argv[2];
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const command = process.argv[2] || 'setup';
 
-if (!command || command === 'setup') {
-  require(path.join(__dirname, '..', 'setup', 'index.js'));
+if (command === 'setup') {
+  await import(join(__dirname, '..', 'setup', 'index.js'));
 } else {
   console.log(`ash: unknown command '${command}'`);
   console.log('Usage: ash setup');
