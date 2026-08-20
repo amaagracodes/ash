@@ -1,6 +1,6 @@
 {
-  "name": "ash-cli",
-  "version": "0.1.0",
+  "name": "@amaagra/ash",
+  "version": "0.1.1",
   "description": "ash — Self Hosting Harness",
   "type": "module",
   "bin": {
