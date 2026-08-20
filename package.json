@@ -1,0 +1,25 @@
+{
+  "name": "ash-cli",
+  "version": "0.1.0",
+  "description": "AI Studio Harness — self-hosted AI development environment in one command",
+  "bin": {
+    "ash": "./bin/ash.js"
+  },
+  "scripts": {
+    "start": "node bin/ash.js",
+    "setup": "node setup/index.js"
+  },
+  "keywords": [
+    "self-hosted",
+    "ai",
+    "caddy",
+    "ollama",
+    "dev-environment",
+    "cli"
+  ],
+  "author": "Aman Agrawal <workwithamaagra@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}
