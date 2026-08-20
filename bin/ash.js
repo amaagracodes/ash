@@ -22,7 +22,46 @@ program
     await import(join(__dirname, '..', 'setup', 'index.js'));
   });
 
-// Default to setup if no command given
+program
+  .command('clean')
+  .description('Remove state, caches, or providers')
+  .option('--providers', 'remove provider configs')
+  .option('--cache', 'clear generated files + caddy data')
+  .option('--services', 'stop + remove service dirs')
+  .option('--all', 'full reset (keeps ash.json)')
+  .action(async (opts) => {
+    await import(join(__dirname, '..', 'setup', 'index.js'));
+  });
+
+program
+  .command('start')
+  .description('Start all services')
+  .action(async () => {
+    await import(join(__dirname, '..', 'setup', 'index.js'));
+  });
+
+program
+  .command('stop')
+  .description('Stop all services')
+  .action(async () => {
+    await import(join(__dirname, '..', 'setup', 'index.js'));
+  });
+
+program
+  .command('sync')
+  .description('Propagate ash.json to all service configs')
+  .action(async () => {
+    await import(join(__dirname, '..', 'setup', 'index.js'));
+  });
+
+program
+  .command('status')
+  .description('Show running services')
+  .action(async () => {
+    await import(join(__dirname, '..', 'setup', 'index.js'));
+  });
+
+// Default to setup
 if (!process.argv.slice(2).length) {
   await import(join(__dirname, '..', 'setup', 'index.js'));
 } else {
